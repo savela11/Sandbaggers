@@ -1,0 +1,37 @@
+﻿@use '../globals' as g;
+$-viewBtn: (
+    null: 0.9rem,
+    g.$mQ-tablet: 1rem,
+);
+.ViewBtns {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding: 0.2rem 0.8rem 0.2rem 0;
+    margin: 0;
+
+    .viewBtn {
+        border-radius: 3px;
+        border: 1px solid #17252a;
+        margin-right: 0.5rem;
+        display: inline-block;
+        padding: 0.5rem 0.8rem;
+        background-color: white;
+        text-transform: capitalize;
+        min-width: 75px;
+        @include g.font-size($-viewBtn);
+        @include g.tablet {
+            padding: 0.8rem 1rem;
+            min-width: 125px;
+        }
+        @include g.tablet-landscape {
+            padding: 1rem;
+        }
+    }
+
+    .active {
+        background-color: #17252a;
+        color: white;
+        font-weight: bold;
+    }
+}

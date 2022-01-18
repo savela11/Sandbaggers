@@ -1,0 +1,127 @@
+﻿@use '../globals' as g;
+
+.authHeader {
+  box-shadow: 0 1px 3px rgba(102, 102, 102, 0.5);
+  position: relative;
+  z-index: 3;
+
+  .backBtn {
+    position: absolute;
+    bottom: -45px;
+    left: 10px;
+    padding: 0;
+    z-index: 10;
+  }
+
+  &__container {
+    position: relative;
+    padding: 0.4rem 1rem;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 1;
+    @include g.mobile {
+      height: 80px;
+      padding: 0.8rem 1rem;
+    }
+    @include g.tablet {
+      height: 100px;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+    @include g.tablet-landscape {
+      padding: 1rem 4rem;
+    }
+    @include g.desktopSmall {
+      padding: 1rem 6rem;
+    }
+
+    h1 {
+      font-size: 0.9rem;
+      font-weight: normal;
+      color: lightgrey;
+    }
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+    }
+
+    .sbLogo {
+      width: 60px;
+      height: 100%;
+
+      @include g.tablet {
+        width: 70px;
+        height: 70px;
+      }
+    }
+
+
+  }
+
+  .userBar {
+    display: flex;
+
+  }
+
+  .utilityBar {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    margin-right: .5rem;
+    transform: translateY(20px);
+    button {
+      background-color: white;
+      height: 30px;
+      width: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      padding: .2rem;
+      border-radius: 3px;
+
+      &.hide {
+        transform: rotate(180deg);
+      }
+
+      svg {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+
+  .profile {
+    transform: translateY(10px);
+    position: relative;
+    width: 60px;
+    height: 60px;
+    padding: 0.3rem;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 3px 5px rgba(102, 102, 102, 0.5);
+    @include g.mobile {
+      height: 70px;
+      width: 70px;
+    }
+    @include g.tablet {
+      height: 80px;
+      width: 80px;
+      transform: translateY(20px);
+    }
+
+    a {
+      display: block;
+      height: 100%;
+      width: 100%;
+
+      img {
+        object-fit: cover;
+        border-radius: 3px;
+      }
+    }
+  }
+}

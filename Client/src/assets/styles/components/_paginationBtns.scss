@@ -1,0 +1,34 @@
+@use '../globals' as g;
+
+$--preNextBtnFS: (
+        null: 0.7rem,
+        g.$mQ-mobile: 0.8rem,
+        g.$mQ-tablet: .9rem,
+        g.$mQ-tablet-landscape: 1rem,
+);
+.paginationBtns {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    margin-right: 1rem;
+    padding: 0.5rem 1.2rem;
+    border-radius: 5px;
+    border: none;
+    border-bottom: 1px solid g.$color-DarkBlue;
+    @include g.font-size($--preNextBtnFS);
+    color: g.$color-SecondaryFS;
+    min-width: 90px;
+
+    &:disabled {
+      background-color: white;
+      opacity: .2;
+      //color: rgba(128, 128, 128, 0.25);
+    }
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+}

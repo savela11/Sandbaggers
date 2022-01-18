@@ -1,0 +1,353 @@
+﻿@use '../globals' as g;
+
+$-text-list-item: (
+        margin: (
+                null: 0 0 .5rem 0,
+                g.$mQ-mobile: 0 0 .8rem 0,
+        ),
+        color: g.$color-AlternativeFS,
+        font-size: (
+                null: 0.8rem,
+                g.$mQ-mobile: 0.9rem,
+                g.$mQ-tablet: 1rem,
+                g.$mQ-tablet-landscape: 1.1rem,
+                g.$mQ-desktopSmall: 1.2rem,
+                g.$mQ-desktop: 1.3rem,
+                g.$mQ-desktopLarge: 1.4rem,
+        ),
+);
+.popUp {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  &.showPopUp {
+    left: 0;
+  }
+
+  &__text {
+    margin: 0;
+    line-height: 1.2;
+
+    &--title {
+      color: g.$color-PrimaryFS;
+      font-weight: 600;
+      font-size: 1.2rem;
+      @include g.mobile {
+        font-size: 1.3rem;
+      }
+      @include g.tablet {
+        font-size: 1.4rem;
+
+      }
+      @include g.tablet-landscape {
+
+      }
+      @include g.desktopSmall {
+
+      }
+      @include g.desktop {
+
+      }
+      @include g.desktopLarge {
+
+      }
+
+    }
+
+    &--para {
+      font-size: .9rem;
+      line-height: 1.4;
+      color: g.$color-AlternativeFS;
+      font-weight: 500;
+
+      @include g.mobile {
+        font-size: 1rem;
+      }
+      @include g.tablet {
+
+      }
+      @include g.tablet-landscape {
+
+      }
+      @include g.desktopSmall {
+
+      }
+      @include g.desktop {
+
+      }
+      @include g.desktopLarge {
+
+      }
+
+    }
+
+    &--number {
+      margin-right: .3rem;
+    }
+
+  }
+
+  &__btn {
+    border: none;
+    background-color: transparent;
+    padding: .2rem;
+    z-index: 1000;
+
+    &--close {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    svg {
+      height: 25px;
+      width: 25px;
+    }
+  }
+
+  &__backDrop {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+  }
+
+
+  &__container {
+    transform: translate(-150%, 0);
+    min-height: calc(100% - 1rem);
+    @include g.mobile {
+    }
+    @include g.tablet {
+      padding: 1rem;
+
+    }
+    @include g.tablet-landscape {
+      margin: 2rem auto;
+
+    }
+    @include g.desktopSmall {
+
+    }
+    @include g.desktop {
+
+    }
+    @include g.desktopLarge {
+
+    }
+
+    &.centered {
+
+      display: flex;
+      align-items: center;
+      margin: 0;
+      width: 100%;
+    }
+
+    &.hide {
+      animation: hidePopUp 0.5s linear forwards;
+    }
+
+    &.show {
+      animation: showPopUp 0.5s linear forwards;
+    }
+
+  }
+
+  &__content {
+    position: relative;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, .2);
+    background-clip: padding-box;
+    border-radius: 5px;
+    z-index: 11;
+    min-height: 225px;
+    display: flex;
+    flex-direction: column;
+    max-height: 250px;
+    overflow: hidden;
+    flex: auto;
+    margin: .5rem;
+    @include g.mobile {
+      min-height: 250px;
+      max-height: 300px;
+      margin: .8rem;
+    }
+    @include g.tablet {
+      min-height: 300px;
+      margin: 0 auto;
+      width: 60%;
+    }
+    @include g.tablet-landscape {
+      min-height: 325px;
+      width: 50%;
+    }
+    @include g.desktopSmall {
+      width: 40%;
+      min-height: 400px;
+    }
+    @include g.desktopLarge {
+      width: 30%;
+      min-height: 450px;
+    }
+  }
+
+  &__loading {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    &--not-loading {
+    }
+  }
+
+  &__landmark {
+
+    &--header {
+      padding: 1rem 2rem 1rem 1rem;
+      border-bottom: 1px solid #dee2e6;
+
+
+      @include g.mobile {
+        padding: 1.5rem;
+      }
+      @include g.tablet {
+
+      }
+      @include g.tablet-landscape {
+
+      }
+      @include g.desktopSmall {
+
+      }
+      @include g.desktop {
+
+      }
+      @include g.desktopLarge {
+
+      }
+    }
+
+    &--body {
+      position: relative;
+      flex: 1 1 auto;
+      padding: 1rem;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+
+      @include g.mobile {
+        padding: 1.5rem;
+      }
+      @include g.tablet {
+        padding: 2rem;
+      }
+      @include g.tablet-landscape {
+
+      }
+      @include g.desktopSmall {
+
+      }
+      @include g.desktop {
+
+      }
+      @include g.desktopLarge {
+
+      }
+
+      &__container {
+        max-height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-right: .5rem;
+      }
+
+    }
+
+    &--footer {
+      border-top: 1px solid #dee2e6;
+      padding: .8rem;
+      @include g.mobile {
+        padding: .9rem 1.5rem;
+      }
+      @include g.tablet {
+        padding: 1rem;
+      }
+      @include g.tablet-landscape {
+
+      }
+      @include g.desktopSmall {
+
+      }
+      @include g.desktop {
+
+      }
+      @include g.desktopLarge {
+
+      }
+    }
+
+
+  }
+
+  &__header {
+  }
+
+  &__list {
+
+    &--item {
+      @include g.printStyles($-text-list-item);
+    }
+
+    &--style-type-none {
+      list-style-type: none;
+    }
+  }
+
+  &__closeBtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+@keyframes showPopUp {
+  0% {
+    transform: translate(150%, 0%);
+  }
+  //50% {
+  //  transform: translateX(100%);
+  //  opacity: 0.5;
+  //}
+
+  100% {
+    transform: translate(0%, 0%);
+  }
+}
+
+@keyframes hidePopUp {
+  0% {
+    transform: translate(0%, 0%);
+  }
+
+  //50% {
+  //  transform: translateX(100%);
+  //  opacity: 0.5;
+  //}
+
+  100% {
+    transform: translate(150%, 0%);
+  }
+}

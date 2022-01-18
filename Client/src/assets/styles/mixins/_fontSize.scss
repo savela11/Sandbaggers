@@ -1,0 +1,28 @@
+@mixin font-size($fs-map) {
+  @each $fs-breakpoint, $fs-font-size in $fs-map {
+    @if $fs-breakpoint == null {
+      font-size: $fs-font-size;;
+    } @else {
+      @media screen and (min-width: $fs-breakpoint * 1px) {
+        font-size: $fs-font-size;
+      }
+    }
+  }
+}
+
+
+@mixin dynamicFontSize($a) {
+  font-size: clamp(1.2rem * #{$a} / 2, 1vw * #{$a}, 1.5rem * #{$a} / 2);
+}
+
+//@mixin dynamicFontSize( $val, $min: 1, $max: 2,) {
+//
+//  font-size: clamp(#{$min}rem * .625, 1vw * #{$val}, #{$max}rem * #{$val});
+//}
+
+//Example:
+//$--selector: (
+//null: 1.2rem,
+//$mobile: 1.4rem
+//$tablet: 1.6rem
+//);

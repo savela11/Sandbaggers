@@ -1,0 +1,206 @@
+﻿@use '../globals' as g;
+
+$-selectWrapper: (
+        position: relative,
+        user-select: none,
+        min-width: (
+                null: 150px,
+                g.$mQ-tablet: 175px,
+                g.$mQ-tablet-landscape: 200px,
+        ),
+);
+$-selectTrigger: (
+        position: relative,
+        display: flex,
+        align-items: center,
+        justify-content: space-between,
+        padding: (
+                null: 0.2rem 0.5rem,
+                g.$mQ-tablet: 0.3rem 0.8rem,
+                g.$mQ-desktopSmall: 0.8rem,
+        ),
+        min-height: (
+                null: 35px,
+                g.$mQ-tablet: 40px,
+        ),
+        font-weight: 500,
+        color: #3b3b3b,
+        background: #ffffff,
+        cursor: pointer,
+        border-width: 2px 0 2px 0,
+        border-style: solid,
+        border-color: #394a6d,
+        border-radius: 3px,
+);
+$-optionFS: (
+        null: 0.8rem,
+        g.$mQ-tablet: 0.9rem,
+        g.$mQ-tablet-landscape: 1rem,
+);
+$-selectedOption: (
+        margin-right: 0.8rem,
+        position: relative,
+        display: block,
+        padding: 0.5rem 0.5rem,
+        font-weight: 600,
+        color: #3b3b3b,
+        cursor: pointer,
+        text-transform: capitalize,
+        white-space: nowrap,
+        line-height: 1.4,
+        font-size: $-optionFS,
+);
+$-option: (
+        position: relative,
+        display: block,
+        padding: 1rem 0.5rem,
+        font-weight: 500,
+        color: #3b3b3b,
+        cursor: pointer,
+        transition: all 0.5s,
+        border-bottom: 1px dotted lightgrey,
+        text-transform: capitalize,
+        white-space: nowrap,
+        line-height: 1.4,
+        font-size: $-optionFS,
+);
+$-option-disabled: (
+        opacity: 0.3,
+        color: g.$color-PrimaryFS,
+        background-color: lightgrey,
+        font-size: (
+                null: 0.7rem,
+                g.$mQ-tablet: 0.8rem,
+                g.$mQ-tablet-landscape: .9rem,
+        )
+);
+.closeBg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 3;
+}
+
+.select-wrapper {
+  @include g.printStyles($-selectWrapper);
+}
+
+.select {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-width: 0 2px 0 2px;
+  border-style: solid;
+  border-color: #394a6d;
+  border-radius: 3px;
+
+  &.open {
+    z-index: 4;
+
+    .trigger {
+      .arrow {
+        &::before {
+          left: 0;
+          transform: rotate(-45deg);
+        }
+
+        &::after {
+          left: 6px;
+          transform: rotate(45deg);
+        }
+      }
+    }
+
+    .options {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: all;
+    }
+  }
+
+  .trigger {
+    @include g.printStyles($-selectTrigger);
+
+    .selected {
+      &__span {
+        @include g.printStyles($-selectedOption);
+      }
+    }
+
+    .arrow {
+      position: relative;
+      height: 10px;
+      width: 10px;
+
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        width: 0.15rem;
+        height: 100%;
+        transition: all 0.5s;
+      }
+
+      &::before {
+        left: 0;
+        transform: rotate(45deg);
+        background-color: #394a6d;
+      }
+
+      &::after {
+        left: 6px;
+        transform: rotate(-45deg);
+        background-color: #394a6d;
+      }
+    }
+  }
+}
+
+.options {
+  position: absolute;
+  display: flex;
+  top: 100%;
+  right: 0;
+  min-width: 100%;
+  border: 1px solid #394a6d;
+  border-top: none;
+  background: #fff;
+  transition: all 0.5s;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+  padding: 0.2rem 0.2rem 0.4rem 0.2rem;
+  max-height: 225px;
+
+  .option {
+    @include g.printStyles($-option);
+
+    &:last-of-type {
+      border: none;
+    }
+
+    &--disabled {
+      @include g.printStyles($-option-disabled);
+    }
+  }
+
+  .option:hover {
+    cursor: pointer;
+    background-color: #b2b2b2;
+  }
+
+  .option.selected {
+    color: #ffffff;
+    background-color: #305c91;
+  }
+
+  &__container {
+    flex: auto;
+    overflow-y: auto;
+    max-height: 100%;
+  }
+}

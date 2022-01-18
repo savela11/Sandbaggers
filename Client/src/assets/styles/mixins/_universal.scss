@@ -1,0 +1,23 @@
+﻿// _mixins.scss
+
+@mixin printStyles($declarations) {
+  @each $property, $value in $declarations {
+    $map: null;
+    @if type-of($value) == 'map' {
+      $map: $value;
+    }
+    @if ($map) {
+      @each $breakpoint, $mapValue in $map {
+        @if $breakpoint == null {
+          #{$property}: $mapValue;
+        } @else {
+          @media screen and (min-width: $breakpoint * 1px) {
+            #{$property}: $mapValue;
+          }
+        }
+      }
+    } @else {
+      #{$property}: $value;
+    }
+  }
+}

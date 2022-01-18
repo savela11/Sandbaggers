@@ -1,0 +1,38 @@
+﻿@use '../globals' as g;
+
+.BackBtn {
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    @include g.tablet {
+        padding: 0.5rem 1rem 0.5rem 1rem;
+    }
+    @include g.tablet-landscape {
+        padding: 1rem 2rem 1rem 2rem;
+    }
+    @include g.desktopSmall {
+        padding: 2rem 3rem 2rem 3rem;
+    }
+
+    button,
+    a {
+        padding: 0.3rem;
+        border: none;
+        background-color: transparent;
+        height: 30px;
+        width: 30px;
+        @include g.mobile {
+            height: 35px;
+            width: 35px;
+        }
+        @include g.tablet {
+            height: 40px;
+            width: 40px;
+        }
+    }
+
+    svg,
+    img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+}

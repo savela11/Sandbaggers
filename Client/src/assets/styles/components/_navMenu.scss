@@ -1,0 +1,270 @@
+﻿@use "../globals" as g;
+
+.navMenu {
+  padding: 2rem 1rem;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 60px;
+  transform: translateY(150%);
+  //min-height: calc(100vh - 60px);
+  display: flex;
+  @include g.mobile {
+    //min-height: calc(100vh - 80px);
+    top: 80px;
+  }
+  @include g.tablet {
+    padding: 5rem;
+    top: 100px;
+  }
+  @include g.tablet-landscape {
+    padding: 2rem 5rem;
+  }
+
+  &.show {
+    animation: showMenu 0.5s linear forwards;
+  }
+
+  &.hide {
+    animation: hideMenu 0.5s linear forwards;
+  }
+
+  &__container {
+    flex: auto;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .svgContainer {
+    height: 25px;
+    width: 25px;
+    @include g.tablet {
+      height: 30px;
+      width: 30px;
+    }
+    @include g.desktop {
+      height: 40px;
+      width: 40px;
+    }
+  }
+
+  $-adminBtn: (
+          font-size: (
+                  null: .8rem,
+                  g.$mQ-mobile: .9rem,
+                  g.$mQ-tablet: 1rem,
+          ),
+          min-width: (
+                  null: 5rem,
+                  g.$mQ-mobile: 6rem
+          ),
+          padding: (
+                  null:.3rem 1rem,
+                  g.$mQ-mobile: .5rem 1.5rem,
+          ),
+          border-radius: 3px,
+          border: none,
+          border-bottom: 1px solid g.$color-DarkBlue
+  );
+
+  .adminButtons {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1.5rem;
+
+    @include g.tablet {
+      margin-bottom: 5rem;
+    }
+
+    @include g.tablet-landscape {
+      margin-bottom: 3rem;
+    }
+
+    button {
+      @include g.printStyles($-adminBtn);
+
+
+      &:first-child {
+        margin-right: 0.5rem;
+        @include g.tablet {
+          margin-right: 1rem;
+        }
+        @include g.tablet-landscape {
+          margin-right: 1rem;
+        }
+      }
+
+      &.active {
+        background-color: g.$color-DarkBlue;
+        color: white;
+      }
+    }
+  }
+
+  nav {
+    min-height: 250px;
+    position: relative;
+
+
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style-type: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-auto-rows: 75px;
+      gap: 10px;
+      @include g.tablet {
+        grid-auto-rows: 100px;
+        gap: 20px;
+      }
+
+      @include g.tablet-landscape {
+        gap: 25px;
+        width: 75%;
+        margin: 0 auto;
+      }
+      @include g.desktopSmall {
+        gap: 30px;
+        grid-auto-rows: 125px;
+      }
+      @include g.desktop {
+        gap: 50px;
+        width: 60%;
+      }
+
+      @include g.desktopLarge {
+        width: 50%;
+        grid-auto-rows: 150px;
+      }
+
+      li {
+        a {
+          -webkit-tap-highlight-color: transparent;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-decoration: none;
+          border-radius: 5px;
+          box-shadow: 0 2px 2px rgba(128, 128, 128, 0.4);
+          height: 100%;
+          padding: 0.5rem;
+
+          img {
+            object-fit: contain;
+            height: 30px;
+            width: 30px;
+
+            @include g.tablet {
+              height: 40px;
+              width: 40px;
+            }
+
+            @include g.tablet-landscape {
+              height: 45px;
+              width: 45px;
+            }
+          }
+
+          span {
+            margin-top: 0.5rem;
+            color: g.$color-DarkBlue;
+            text-align: center;
+
+            @include g.tablet {
+              margin-top: 1rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .extra {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include g.desktop {
+      padding: 0 5rem;
+    }
+
+    @include g.desktopLarge {
+      padding: 0 10rem;
+    }
+
+    &__btn {
+      padding: .5rem 1rem;
+      min-width: 80px;
+      font-size: .7rem;
+      font-weight: 600;
+      border-radius: 5px;
+      border: none;
+
+      @include g.mobile {
+        padding: .5rem 1.5rem;
+        min-width: 90px;
+      }
+      @include g.tablet {
+        padding: .8rem 2rem;
+        font-size: .9rem;
+        min-width: 125px;
+      }
+
+      &--logout {
+        color: g.$color-Crimson;
+        border-bottom: 1px solid g.$color-Crimson;
+      }
+
+      &--close-menu {
+        color: g.$color-secondary;
+        border-bottom: 1px solid g.$color-secondary;
+      }
+    }
+
+
+  }
+
+  .slide-fade-enter-active {
+    transition: all 1s cubic-bezier(1, 0.5, 0.8, 1);
+  }
+
+  .slide-fade-leave-active {
+    transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+  }
+
+  .slide-fade-enter,
+  .slide-fade-leave-to {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+  }
+
+
+  @keyframes showMenu {
+    0% {
+      transform: translateY(150%);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  @keyframes hideMenu {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    100% {
+      transform: translateY(150%);
+    }
+  }
+}

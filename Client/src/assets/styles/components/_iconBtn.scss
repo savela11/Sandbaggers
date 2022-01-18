@@ -1,0 +1,39 @@
+﻿@use "../globals" as g;
+.IconBtn {
+
+  &.float {
+    &--right {
+      float: right;
+    }
+  }
+
+  button, a {
+    padding: 0.3rem;
+    border: none;
+    background-color: transparent;
+    height: 30px;
+    width: 30px;
+    @include g.mobile {
+      height: 35px;
+      width: 35px;
+    }
+
+
+
+    &.circle {
+      border-radius: 50%;
+      padding: .1rem;
+    }
+
+    &.white {
+      background-color: white;
+    }
+  }
+
+  svg,
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}

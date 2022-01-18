@@ -1,0 +1,186 @@
+﻿@use "../globals" as g;
+
+.c-field-container {
+  padding: 0.8rem 0 0.5rem 0;
+  flex: auto;
+}
+
+.c-field {
+  flex: auto;
+  display: flex;
+  min-height: 56px;
+  font-weight: 600;
+  position: relative;
+  font-family: 'Raleway', sans-serif;
+  @include g.font-size(g.$font-input);
+  border: 1px solid rgba(60, 60, 67, 0.2);
+  outline: none;
+  border-radius: 5px;
+  padding: 0.5rem 0.8rem;
+  line-height: 25px;
+
+  @include g.mobile {
+    padding: 0.3rem 0.9rem;
+  }
+  @include g.tablet {
+    padding: 0.5rem 1rem;
+  }
+  @include g.desktop {
+    min-height: 60px;
+  }
+
+  &:active,
+  &:focus,
+  &:focus-within,
+  &.active {
+    border: 2px solid g.$color-PrimaryFS;
+
+    label {
+      @include g.printStyles(g.$font-activeLabel);
+    }
+  }
+
+  label {
+    @include g.printStyles(g.$font-label);
+
+    input {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  input,
+  textarea {
+    padding: 0.5rem 1rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 5px;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    border: none;
+    outline: none;
+    line-height: 1.4;
+    color: rgba(40, 40, 40, 0.7);
+    @include g.font-size(g.$font-input);
+    @include g.tablet {
+      padding: 0.8rem 1rem;
+      line-height: 1.6;
+    }
+  }
+
+  input {
+    flex: auto;
+  }
+
+  textarea {
+    flex: auto;
+    resize: none;
+  }
+}
+
+.sm {
+  min-height: 40px;
+}
+
+.textArea {
+  min-height: 150px;
+}
+
+.search {
+  min-height: 40px;
+  padding: 0.2rem 0.8rem;
+  border: 1px solid rgba(60, 60, 67, 0.2);
+  border-radius: 50px;
+
+  label {
+    color: rgba(60, 60, 67, 0.2);
+    padding: 0 0.3rem;
+  }
+
+  &:active,
+  &:focus,
+  &:focus-within,
+  &.active {
+    border: 2px solid rgba(60, 60, 67, 0.8);
+
+    label {
+      color: rgba(60, 60, 67, 0.8);
+      left: 1.5rem;
+    }
+  }
+
+  input {
+    border-radius: 50px;
+  }
+
+  input,
+  textarea {
+    color: rgba(60, 60, 67, 0.8);
+  }
+}
+
+.primary {
+  &:active,
+  &:focus,
+  &:focus-within,
+  &.active {
+    border: 2px solid g.$color-primary;
+
+    label {
+      color: g.$color-primary;
+    }
+  }
+
+  input,
+  textarea {
+    color: g.$color-primary;
+  }
+}
+
+.secondary {
+  &:active,
+  &:focus,
+  &:focus-within,
+  &.active {
+    border: 2px solid g.$color-secondary;
+
+    label {
+      color: g.$color-secondary;
+    }
+  }
+
+  input,
+  textarea {
+    color: g.$color-secondary;
+  }
+}
+
+.noBorder {
+  border: none;
+  border-bottom: 1px solid rgba(60, 60, 67, 0.2);
+
+  &:active,
+  &:focus,
+  &:focus-within,
+  &.active {
+    border: none;
+    border-bottom: 1px solid rgba(60, 60, 67, 0.2);
+
+  }
+}
+
+.title {
+
+  &:active,
+  &:focus,
+  &:focus-within,
+  &.active {
+    label {
+      @include g.printStyles(g.$font-activeTitleLabel);
+    }
+
+  }
+
+}

@@ -1,0 +1,58 @@
+﻿@use "../mixins/_mediaQueries.scss" as *;
+@use "./_colors.scss" as *;
+
+.text {
+  line-height: 1.2;
+
+  &--title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: map-get($Font-Color, 'Primary');
+    @include mobile {
+      font-size: 3.4rem;
+    }
+    @include iPhoneProMax {
+      font-size: 3.8rem;
+    }
+    @include tablet {
+      font-size: 4rem;
+    }
+    @include tablet-landscape {
+      font-size: 4.4rem;
+    }
+    @include desktopSmall {
+      font-size: 4.2rem;
+    }
+  }
+
+  &--secondary-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: map-get($Font-Color, 'Secondary');
+    @include mobile {
+      font-size: 2.2rem;
+    }
+    @include iPhoneProMax {
+      font-size: 2.4rem;
+    }
+    @include tablet {
+      font-size: 2.6rem;
+    }
+  }
+
+  &--para {
+    font-size: 1.4rem;
+    line-height: 1.4;
+    @include mobile {
+      font-size: 1.6rem;
+      line-height: 1.5;
+    }
+    @include iPhoneProMax {
+      font-size: 1.8rem;
+      line-height: 1.6;
+    }
+    @include tablet {
+      font-size: 1.8rem;
+    }
+  }
+}

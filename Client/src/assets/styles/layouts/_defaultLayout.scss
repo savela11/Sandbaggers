@@ -1,0 +1,18 @@
+﻿@use '../globals' as g;
+
+.DefaultLayout {
+  min-height: 100vh;
+  @include g.tablet-landscape {
+    display: flex;
+  }
+  .heading {
+    @include g.tablet-landscape {
+      flex: 0 0 50%;
+    }
+  }
+  .routerView {
+    @include g.tablet-landscape {
+      flex: 0 0 50%;
+    }
+  }
+}

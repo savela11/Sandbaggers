@@ -1,0 +1,30 @@
+$tile-height: 20;
+@mixin tile-height($size) {
+    height: $size * $tile-height + px;
+}
+
+@for $i from 1 through 5 {
+    .tile-#{$i} {
+        @include tile-height($i);
+    }
+}
+
+@mixin flexVal($val) {
+    display: flex;
+}
+$vals: (sm, md, lg, xl);
+@each $val in $vals {
+    .flex-#{$val} {
+        @include flexVal($val);
+    }
+}
+
+//$flexVal:(
+//null: sm,
+//
+//)
+//@each $val, $key in $flexVal {
+//    @debug $key;
+//    @debug $val;
+//    .flex-#{$val}
+//}

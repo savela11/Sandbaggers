@@ -1,0 +1,133 @@
+﻿@use './_mediaQueries.scss' as *;
+@use './_stringHelpers.scss' as *;
+
+$base-prefix: v;
+
+@mixin create-mq($breakpoint) {
+  @if ($breakpoint == 0) {
+    @content;
+  } @else {
+    @media screen and (min-width: $breakpoint *1px) {
+      @content;
+    }
+  }
+}
+
+$vals: (
+        flex: (property: 'display: ', value: 'flex;'),
+        row: (property: 'flex-direction: ', value: 'row;'),
+        column: (property: 'flex-direction: ', value: 'column;'),
+);
+@function createClass($key, $breakpoint, $modifier) {
+  $upperCaseKey: #{$key};
+  @each $k, $v in $vals {
+    //@debug "K:" $k;
+    //@debug "V:" $v;
+    $test: unquote(map-get($v, property));
+    $output: #{$upperCaseKey}-#{$k}#{$modifier};
+
+    //@debug TEST $test;
+
+    $output: #{$upperCaseKey}#{$modifier};
+    @return #{$test} + #{$k};
+  }
+
+}
+
+@mixin generate-classes($modifier,  $breakpoint, $key) {
+  //$upperCaseKey:camelize(-#{$key});
+
+
+  $upperCaseKey: #{$key};
+  @each $k, $v in $vals {
+    //@debug "K:" $k;
+    //@debug "V:" $v;
+    $test: unquote(map-get($v, property));
+    $output: #{$upperCaseKey}-#{$k}#{$modifier};
+
+    //@debug TEST $test;
+
+    $output: #{$upperCaseKey}#{$modifier};
+
+
+    @include create-mq($breakpoint) {
+      &#{$key}#{$modifier} {
+        display: flex;
+      }
+    }
+    
+  }
+
+
+  //@if ($modifier != '') {
+  //  &#{$key}#{$modifier} {
+  //    display: flex;
+  //  }
+  //  &#{$key}-row#{$modifier} {
+  //    flex-direction: row;
+  //  }
+  //  &#{$key}-column#{$modifier} {
+  //    flex-direction: column;
+  //  }
+  //  &#{$key}-wrap#{$modifier} {
+  //    flex-wrap: wrap;
+  //  }
+  //  &#{$key}-no-wrap#{$modifier} {
+  //    flex-wrap: nowrap;
+  //  }
+  //  &#{$key}-third#{$modifier} {
+  //    flex-basis: 33%;
+  //  }
+  //  &#{$key}-quarter#{$modifier} {
+  //    flex-basis: 25%;
+  //  }
+  //  &#{$key}-half#{$modifier} {
+  //    flex-basis: 50%;
+  //  }
+  //} @else {
+  //  &#{$key}#{$modifier} {
+  //    display: flex;
+  //  }
+  //  &#{$key}-row#{$modifier} {
+  //    flex-direction: row;
+  //  }
+  //  &#{$key}-column#{$modifier} {
+  //    flex-direction: column;
+  //  }
+  //  &#{$key}-wrap#{$modifier} {
+  //    flex-wrap: wrap;
+  //  }
+  //  &#{$key}-no-wrap#{$modifier} {
+  //    flex-wrap: nowrap;
+  //  }
+  //  &#{$key}-grow#{$modifier} {
+  //    flex-grow: 1;
+  //  }
+  //  &#{$key}-no-grow#{$modifier} {
+  //    flex-grow: 0;
+  //  }
+  //  &#{$key}-shrink#{$modifier} {
+  //    flex-shrink: 1;
+  //  }
+  //  &#{$key}-no-shrink#{$modifier} {
+  //    flex-shrink: 0;
+  //  }
+  //  &#{$key}-third#{$modifier} {
+  //    flex-basis: 33%;
+  //  }
+  //  &#{$key}-quarter#{$modifier} {
+  //    flex-basis: 25%;
+  //  }
+  //  &#{$key}-half#{$modifier} {
+  //    flex-basis: 50%;
+  //  }
+  //}
+}
+
+@mixin print-classes($mediaQueries, $key) {
+  @each $modifier, $breakpoint in $map-media-query-props {
+    @include generate-classes($modifier, $breakpoint, $key);
+  }
+}
+
+

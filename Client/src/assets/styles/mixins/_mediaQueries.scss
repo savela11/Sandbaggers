@@ -1,0 +1,69 @@
+$mobile: 375;
+$mobile-landscape: 560;
+$tablet: 768;
+$tablet-landscape: 1024;
+$desktopSmall: 1280;
+$desktop: 1440;
+$desktopLarge: 1900;
+
+
+$iphone-pro-max-width: 428;
+$iphone-pro-max-height: 926;
+
+$map-media-query-props: (
+        '': 0,
+        '-xs': $mobile,
+        '-sm': $iphone-pro-max-width,
+        '-md': $tablet,
+        '-lg': $tablet-landscape,
+        '-xl': $desktopSmall
+);
+//GENERAL
+@mixin mobile {
+  @media only screen and (min-width: $mobile * 1px) {
+    @content;
+  }
+}
+@mixin mobile-landscape {
+  @media only screen and (min-width: $mobile-landscape * 1px) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media only screen and (min-width: $tablet * 1px) {
+    @content;
+  }
+}
+@mixin tablet-landscape {
+  @media only screen and (min-width: $tablet-landscape * 1px) {
+    @content;
+  }
+}
+@mixin desktopSmall {
+  @media only screen and (min-width: $desktopSmall * 1px) {
+    @content;
+  }
+}
+@mixin desktop {
+  @media only screen and (min-width: $desktop * 1px) {
+    @content;
+  }
+}
+@mixin desktopLarge {
+  @media only screen and (min-width: $desktopLarge * 1px) {
+    @content;
+  }
+}
+
+//CUSTOM
+
+@mixin iPhoneProMax {
+  @media only screen and (min-width: $iphone-pro-max-width * 1px) and (max-height: $iphone-pro-max-height * 1px)  {
+    @content;
+  }
+}
+@mixin iPhone-13-ProMax-Portrait {
+  @media only screen and (min-width: $iphone-pro-max-width * 1px) and (max-height: $iphone-pro-max-height * 1px) and (orientation: portrait) {
+    @content;
+  }
+}

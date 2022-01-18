@@ -1,0 +1,123 @@
+@use '../globals' as g;
+
+
+.card {
+  padding: .5rem;
+  overflow: hidden;
+  @include g.tablet-landscape {
+    padding: .3rem;
+  }
+  @include g.desktopSmall {
+    padding: .5rem;
+  }
+
+  &__btn {
+
+    font-size: 0.8rem;
+    padding: .3rem .8rem;
+    border: none;
+    text-decoration: none;
+    @include g.mobile {
+      font-size: 0.9rem;
+    }
+    @include g.desktopLarge {
+      font-size: 1.2rem;
+    }
+
+    &--edit {
+      color: g.$color-primary;
+      font-weight: 600;
+    }
+
+    &--view {
+
+    }
+  }
+
+  &__container {
+    position: relative;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 5px;
+    border-left: 5px solid g.$color-DarkGreen;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100%;
+    @include g.desktopSmall {
+    }
+    @include g.desktop {
+    }
+
+  }
+
+
+  &__text {
+    margin: 0;
+
+    &--title {
+      color: g.$color-PrimaryFS;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight: bold;
+      font-size: 1rem;
+      @include g.mobile {
+        font-size: 1.1rem;
+      }
+      @include g.desktop {
+        font-size: 1.2rem;
+      }
+      @include g.desktopLarge {
+        font-size: 1.3rem;
+      }
+    }
+
+    &--alt {
+      color: grey;
+      font-size: 0.7rem;
+      @include g.desktopSmall {
+        font-size: .8rem;
+      }
+      @include g.desktop {
+        font-size: .9rem;
+      }
+      @include g.desktopLarge {
+        font-size: 1rem;
+      }
+    }
+  }
+
+
+  &__section {
+    display: flex;
+    padding: 1rem;
+    @include g.desktopLarge {
+      padding: 1.2rem;
+    }
+
+
+  }
+
+  .flex {
+    &--center {
+      justify-content: center;
+    }
+
+    &--between {
+      justify-content: space-between;
+    }
+
+    &--end {
+      justify-content: flex-end;
+    }
+
+    &--items-center {
+      align-items: center;
+
+    }
+  }
+
+
+}
+
+

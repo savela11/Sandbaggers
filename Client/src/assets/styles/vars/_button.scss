@@ -1,0 +1,185 @@
+﻿@use './mediaQuerySizes.scss' as *;
+@use './_colors.scss' as *;
+@use '../mixins/mediaQueries' as *;
+@use '../mixins/fontSize' as *;
+
+button {
+  -webkit-writing-mode: horizontal-tb !important;
+  writing-mode: horizontal-tb;
+  text-rendering: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0;
+  text-shadow: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.btn {
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.5;
+  color: #212529;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  //box-shadow: 0 2px rgba(154, 154, 154, 0.8);
+  outline: 0;
+
+  &:focus {
+    box-shadow: 0 0 0 0.25rem rgb(23 37 42 / 50%);
+  }
+
+  &.active {
+    background-color: $DarkBlue;
+    color: white;
+  }
+
+  &.submit {
+    margin: 1rem 0;
+  }
+
+  &--icon {
+    padding: 0;
+  }
+
+  &--circle {
+    border-radius: 50%;
+    padding: 0;
+    @include tablet {
+      border-radius: 50%;
+      padding: 0;
+    }
+  }
+
+  &.clicked {
+    transform: translateY(4px);
+  }
+
+  &:disabled {
+    background-color: lightgrey;
+    border: 1px solid lightgrey;
+    color: $DarkBlue;
+    opacity: 0.4;
+  }
+
+  &--darkBlue {
+    color: white;
+    background-color: $DarkBlue;
+    border-color: $DarkBlue;
+  }
+
+  &--white {
+    color: $DarkBlue;
+    background-color: white;
+  }
+
+  &--darkGreen {
+    color: white;
+    background-color: $primary;
+    border: 1px solid $primary;
+  }
+
+  &--red {
+    background-color: $danger;
+    color: white;
+    border-color: $danger;
+  }
+
+  &--secondary {
+    background-color: $secondary;
+    border-color: $secondary;
+    color: white;
+
+    &:focus {
+      box-shadow: 0 0 0 0.25rem rgb(23 37 42 / 50%);
+    }
+  }
+
+  &--success {
+    background-color: $success;
+    border-color: $success;
+    color: white;
+
+    &:focus {
+      box-shadow: 0 0 0 0.25rem rgb(25 135 84 / 50%);
+    }
+  }
+
+  &--danger {
+    background-color: $danger;
+    color: white;
+    border-color: $danger;
+
+    &:focus {
+      box-shadow: 0 0 0 0.25rem rgb(139 38 53 / 50%);
+    }
+  }
+
+  &--border {
+    &-none {
+      border: none;
+    }
+
+    &-darkBlue {
+      background-color: white;
+      border: 1px solid $DarkBlue;
+    }
+
+    &-red {
+      background-color: white;
+      color: $danger;
+      border: 1px solid $danger;
+    }
+
+    &-darkGreen {
+      background-color: white;
+      border: 1px solid $DarkGreen;
+    }
+  }
+
+  &--borderBottom {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
+
+  &--tiny {
+    padding: 0.2rem 0.8rem;
+  }
+
+  &--xs {
+    padding: 0.3rem 1rem;
+  }
+
+  &--sm {
+    padding: 0.5rem 1.5rem;
+  }
+
+  &--md {
+    padding: .6rem 2rem;
+  }
+
+  &--lg {
+    padding: .8rem 2.5rem;
+  }
+}
+
+.btnContainer {
+  margin-top: 1rem;
+}
+
+.backBtn {
+  padding: 1rem;
+}
+

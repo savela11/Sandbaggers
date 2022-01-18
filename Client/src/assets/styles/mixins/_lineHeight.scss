@@ -1,0 +1,18 @@
+@mixin line-height($lh-map) {
+  @each $ls-breakpoint, $lh-size in $lh-map {
+    @if $ls-breakpoint == null {
+      line-height: $lh-size;
+    } @else {
+      @media screen and (min-width: $ls-breakpoint * 1px) {
+        line-height: $lh-size;
+      }
+    }
+  }
+}
+
+//Example:
+//$--selector: (
+//null: 1.2,
+//$mobile: 1.4
+//$tablet: 1.6
+//);
