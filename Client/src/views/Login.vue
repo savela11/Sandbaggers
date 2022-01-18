@@ -125,8 +125,8 @@ export default defineComponent({
     flex: auto;
     min-height: 50%;
 
-    &--top {
-    }
+    // &--top {
+    // }
 
     &--bottom {
       background-color: white;
