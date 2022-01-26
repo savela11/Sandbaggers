@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace API.Models.Entity;
 
 public class ApplicationUser : IdentityUser
 {
-    
-        public string? FullName { get; set; }
-        public UserProfile UserProfile { get; set; }
+    public string? FullName { get; set; }
+    [Required] public UserProfile UserProfile { get; set; } = null!;
 
-        public UserSettings UserSettings { get; set; }
+    [Required] public UserSettings UserSettings { get; set; } = null!;
 }
