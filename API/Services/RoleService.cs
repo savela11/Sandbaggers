@@ -52,7 +52,8 @@ public class RoleService : IRoleService
                 var isInRole = await _userManager.IsInRoleAsync(user, role.Name);
                 if (!isInRole) continue;
 
-                roleWithUserVm.Users.Add(new UserVmForRole(user.Id, user.UserName, user.FullName));
+                
+                roleWithUserVm.Users.Add(new UserVmForRole(user.Id, user.UserName, user.FullName!));
             }
 
             listOfRolesWithUserVm.Add(roleWithUserVm);

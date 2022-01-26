@@ -1,7 +1,7 @@
 import {ActionContext} from "vuex";
-import SecureLS from "secure-ls";
+// import SecureLS from "secure-ls";
 import router from "@/router";
-import {LoggedInUserVm} from "@/types/models/ViewModels/AuthViewModel";
+import {LoggedInUserVm} from "@/types/viewmodels/AuthViewModel";
 
 export type AuthState = {
     CurrentUser: LoggedInUserVm | null
@@ -51,7 +51,7 @@ const mutations = {
 const actions = {
     async loginUser(context: ActionContext<AuthState, any>, payload: LoggedInUserVm) {
         await context.commit('loginUser', payload)
-        await router.push('/Dashboard')
+        router.push("/Dashboard").then()
 
     },
     async logoutUser(context: ActionContext<AuthState, any>) {

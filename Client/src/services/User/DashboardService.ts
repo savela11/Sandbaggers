@@ -1,7 +1,7 @@
 import apiClient from '../../utility/apiClient'
 import { AxiosResponse } from 'axios'
-import { DashboardViewModel } from '@/types/models/ViewModels/DashboardViewModel'
-import {UserVm} from "@/types/models/ViewModels/UserVm";
+import { DashboardViewModel } from '@/types/viewmodels/DashboardViewModel'
+import {UserVm} from "@/types/viewmodels/UserVm";
 
 const url = 'v1/Dashboard'
 

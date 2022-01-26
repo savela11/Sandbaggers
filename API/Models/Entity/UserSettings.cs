@@ -9,19 +9,11 @@ public class UserSettings
 
     public ApplicationUser User { get; set; } = null!;
 
-    [Column(TypeName = "jsonb")] public List<FavoriteLink> FavoriteLinks { get; set; } = new List<FavoriteLink>();
+    [Column(TypeName = "jsonb")] public List<FavoriteLink> FavoriteLinks { get; set; } = new();
 
 
-    //TODO add a contact property after resetting the database instead of separate iscontact and email showing
-    // [Column(TypeName = "jsonb")]
-    // public Contact Contact { get; set; }
+    [Column(TypeName = "jsonb")] public Contact Contact { get; set; } = null!;
 
-
-    // public Contact Contact { get; set; } = null!;
-
-    public bool IsContactNumberShowing { get; set; } = false;
-
-    public bool IsContactEmailShowing { get; set; } = false;
 }
 
 public class FavoriteLink

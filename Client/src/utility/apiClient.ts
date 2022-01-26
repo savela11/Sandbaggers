@@ -5,7 +5,7 @@ import SecureLS from 'secure-ls'
 const url = 'https://localhost:5001'
 const ls = new SecureLS({isCompression: false})
 import {store} from '@/store'
-import {LoggedInUserVm} from "@/types/models/ViewModels/AuthViewModel";
+import {LoggedInUserVm} from "@/types/viewmodels/AuthViewModel";
 
 const apiClient = axios.create({
     baseURL: import.meta.env.MODE === "production" ? url : '/api'

@@ -9,7 +9,7 @@ import {
 } from "vue";
 import AuthService from "@/services/Auth/AuthService";
 import {key, useStore} from "@/store";
-import {LoginUserDto} from "@/types/models/DTO/AuthDto";
+import {LoginUserDto} from "@/types/dto/AuthDto";
 import axios from "axios";
 // import img from '@/assets/images/Login-BG.jpg'
 

@@ -17,6 +17,5 @@ public class UserProfile
 
     [Column(TypeName = "decimal(10,1)")] public decimal Handicap { get; set; }
 
-    public DateTime CreatedOn { get; set; }
-    public DateTime UpdatedOn { get; set; }
+
 }

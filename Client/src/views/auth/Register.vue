@@ -4,7 +4,7 @@ import {
   defineComponent,
   reactive,
 } from "vue";
-import {RegisterUserDto} from "@/types/models/DTO/AuthDto";
+import {RegisterUserDto} from "@/types/dto/AuthDto";
 
 export default defineComponent({
   name: "Register",

@@ -1,5 +1,10 @@
-import {createRouter, createWebHistory, RouteRecordRaw, NavigationGuardNext, RouteLocationNormalized, RouteLocation, RouteRecordName} from 'vue-router'
-import {defineAsyncComponent} from "vue";
+import {
+    createRouter,
+    createWebHistory,
+    RouteRecordRaw,
+    NavigationGuardNext,
+    RouteLocationNormalized,
+} from 'vue-router'
 import DefaultLayout from '../layouts/DefaultLayout.vue'
 
 
@@ -51,8 +56,6 @@ routes.forEach((route) => {
 })
 
 
-
-
 const router = createRouter({
     history: createWebHistory(),
     routes,
@@ -69,7 +72,7 @@ router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, n
 
 
     const authStore = store.state.auth;
-
+    console.log('AuthStore in route guard', authStore)
     let userHasRequiredRole: boolean | unknown = false;
     let isLoggedIn = authStore.IsLoggedIn
     let currentUser = authStore.CurrentUser
@@ -77,8 +80,9 @@ router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, n
     const requiredRole: string | unknown = to.meta.role;
 
     if (typeof requiredRole === "string") {
-        userHasRequiredRole = currentUser?.roles.includes(requiredRole);
-        console.log(`Does User have required ${requiredRole} Role: ${currentUser?.roles.includes(requiredRole)}`)
+
+        userHasRequiredRole = currentUser?.roles.some((role) => role === requiredRole || role === 'Admin');
+        console.log(`Does User have required ${requiredRole} Role: ${userHasRequiredRole}`)
     }
 
 
@@ -98,6 +102,8 @@ router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, n
         }
 
     } else {
+        store.dispatch("ui/toggleCurrentViewLoading", false).then(() => {
+        })
         return next("/Login")
         // if (to.name !== "Login") {
         //     return next("/Login")
@@ -107,7 +113,7 @@ router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, n
     }
 
 })
-router.afterEach((to: RouteLocationNormalized, from: RouteLocationNormalized) => {
+router.afterEach((to: RouteLocationNormalized ) => {
     let title = "Sandbaggers";
     if (to.meta.title) {
         title = to.meta.title as string;

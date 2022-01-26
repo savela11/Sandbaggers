@@ -3,13 +3,13 @@ using API.Config;
 using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
 
-var VueAppPolicy = "_vueAppPolicy";
+const string vueAppPolicy = "_vueAppPolicy";
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(VueAppPolicy,
+    options.AddPolicy(vueAppPolicy,
         corsPolicyBuilder => { corsPolicyBuilder.SetIsOriginAllowed((host) => true).AllowAnyHeader().AllowAnyMethod().AllowCredentials(); });
 });
 
@@ -66,15 +66,16 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c => { c.SwaggerEndpoint("v1/swagger.json", "My API V1"); });
+  
+        app.UseSwagger();
+        app.UseSwaggerUI(c => { c.SwaggerEndpoint("v1/swagger.json", "My API V1"); });
 }
 
 app.UseHttpsRedirection();
 
 app.UseRouting();
 
-app.UseCors(VueAppPolicy);
+app.UseCors(vueAppPolicy);
 
 app.UseAuthentication();
 app.UseAuthorization();
