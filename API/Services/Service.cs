@@ -13,7 +13,7 @@ public class Service : IService
         IOptions<AppSettingsExtension> appSettingsExtension,
         IRepository repo)
     {
-        Auth = new AuthService(dbContext, userManager, signInManager, repo, appSettingsExtension);
+        Auth = new AuthService(dbContext, userManager, signInManager, repo, appSettingsExtension, roleManager);
         User = new UserService(dbContext);
         Role = new RoleService(userManager, roleManager, dbContext);
     }

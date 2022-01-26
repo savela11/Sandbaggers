@@ -28,12 +28,22 @@ public class AuthController : ControllerBase
 
         return Ok(result.Data);
     }
-    
+
     [HttpPost]
     public async Task<IActionResult> Logout()
     {
         await _service.Auth.Logout();
         return Ok();
     }
-    
+
+
+    [HttpPost]
+    public async Task<IActionResult> Register(RegisterUserDto registerUserDto)
+    {
+        var response = await _service.Auth.Register(registerUserDto);
+
+        if (!response.IsSuccess) return BadRequest(response);
+
+        return Ok(response.Data);
+    }
 }
