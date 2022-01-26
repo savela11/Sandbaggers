@@ -15,7 +15,3 @@ export type LoginUserDto = {
     password: string
 }
 
-interface ILoginUserDto {
-    username: string
-    password: string
-}

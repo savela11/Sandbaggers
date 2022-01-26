@@ -2,7 +2,7 @@
 import {defineAsyncComponent, defineComponent, reactive} from "vue";
 import {useStore} from "@/store";
 import DashboardService from "@/services/User/DashboardService";
-import {UserVm} from "@/types/models/ViewModels/UserVm";
+import {UserVm} from "@/types/viewmodels/UserVm";
 
 export default defineComponent({
   name: "Dashboard",

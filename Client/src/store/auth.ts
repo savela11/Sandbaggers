@@ -1,7 +1,7 @@
 import {ActionContext} from "vuex";
 import SecureLS from "secure-ls";
 import router from "@/router";
-import {LoggedInUserVm} from "@/types/models/ViewModels/AuthViewModel";
+import {LoggedInUserVm} from "@/types/viewmodels/AuthViewModel";
 
 export type AuthState = {
     CurrentUser: LoggedInUserVm | null
