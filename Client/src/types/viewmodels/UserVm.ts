@@ -31,8 +31,11 @@ export interface UserProfileVm {
 
 export interface UserSettingsVm {
   favoriteLinks: FavoriteLinkVm[]
-  isContactNumberShowing: boolean
-  isContactEmailShowing: boolean
+  contact: ContactVm
+}
+export interface ContactVm {
+  isEmailShowing: boolean
+  isPhoneNumberShowing: boolean
 }
 
 export interface FavoriteLinkVm {
