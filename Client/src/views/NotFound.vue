@@ -16,6 +16,7 @@ import {
 } from "vue";
 import router from "@/router";
 
+
 export default defineComponent({
   name: "NotFound",
   components: {},
@@ -32,6 +33,7 @@ export default defineComponent({
       }, timer * 1000);
     });
     return { imgUrl, img, timer };
+
   },
 });
 </script>
