@@ -1,22 +1,11 @@
-﻿import {NavigationGuardNext} from 'vue-router'
-import AdminLayout from "@/layouts/AdminLayout.vue";
+﻿import AdminLayout from "@/layouts/AdminLayout.vue";
 
-
-// import AuthLayout from '@/layouts/authLayouts/AuthLayout.vue'
-// import AuthLayoutNoNavBar from '@/layouts/authLayouts/AuthLayoutNoNavBar.vue'
-// import AuthLayoutNoHeader from '@/layouts/authLayouts/AuthLayoutNoHeader.vue'
-// import AuthLayoutNoBars from '@/layouts/authLayouts/AuthLayoutNoBars.vue'
-// import AuthLayoutNoHeaderAlt from "@/layouts/authLayouts/AuthLayoutNoHeader-Alt.vue";
-
-// function loadView(view: string) {
-//     return (): Promise<typeof import('*.vue')> => import(/* webpackChunkName: "view-[request]" */ `@/views/admin/${view}.vue`)
-// }
 
 function generateRoute(route: string) {
     return () => import(`../views/admin/${route}.vue`)
 }
 
-export default [
+const routes = [
     {
         path: '/admin',
         name: 'Admin Dashboard',
@@ -92,3 +81,10 @@ export default [
     //     },
     // },
 ]
+
+routes.forEach(function(r) {
+    console.log(r)
+    Object.assign(r,  {meta: {...r.meta, requiresAuth: true, role: 'Admin'}})
+
+})
+export default routes

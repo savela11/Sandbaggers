@@ -7,35 +7,15 @@ import userRoutes from "@/router/userRoutes";
 import testRoutes from "@/router/testRoutes";
 import adminRoutes from "@/router/adminRoutes";
 import {store} from "@/store";
+import authRoutes from "@/router/authRoutes";
 
 function generateRoute(route: string) {
     return () => import(`../views/${route}.vue`)
 }
 
-function setLayout(layout: string) {
-    // LatestBox: defineAsyncComponent(() => import('@/components/LatestBox.vue'))
-    // return () => import(`../layouts/${layout}.vue`)
-    return defineAsyncComponent(() => import(`../layouts/${layout}.vue`))
-}
-
-function guardRoute(to: RouteLocation, from: RouteLocation, next: NavigationGuardNext): any {
-    console.log(to)
-    console.log(from)
-    let authenticated = false;
-    if (authenticated && to.name === "Login") {
-        next("/Dashboard");
-
-    } else if (!authenticated) {
-        if (to.name === "Login") {
-            next()
-        } else {
-            next("/Login")
-        }
-    }
-
-}
 
 const routes: Array<RouteRecordRaw> = [
+    ...authRoutes,
     ...userRoutes,
     ...testRoutes,
     ...adminRoutes,
@@ -43,34 +23,36 @@ const routes: Array<RouteRecordRaw> = [
     {
         path: "/",
         name: 'Default',
-        component: generateRoute('Login'),
+        component: () => import("../views/auth/Login.vue"),
         meta: {
-            layout: DefaultLayout
+            layout: DefaultLayout,
+            title: 'Login'
         },
     },
     {
         path: "/:catchAll(.*)",
         name: 'NotFound',
         component: generateRoute('NotFound'),
-        beforeEnter: guardRoute,
         meta: {
-            layout: DefaultLayout
+            layout: DefaultLayout,
+            title: 'Not Found'
         },
-    },
-
-    {
-        path: '/Login',
-        name: 'Login',
-        beforeEnter: guardRoute,
-        component: generateRoute('Login'),
-        meta: {
-            title: 'Login',
-            layout: DefaultLayout
-        }
     },
 
 
 ]
+routes.forEach((route) => {
+    console.log(route)
+    if (route.meta!.role) {
+        Object.assign(route, {meta: {...route.meta, requiresAuth: true}})
+    } else {
+        Object.assign(route, {meta: {...route.meta, requiresAuth: false}})
+    }
+})
+
+
+
+
 const router = createRouter({
     history: createWebHistory(),
     routes,
@@ -78,6 +60,14 @@ const router = createRouter({
 
 
 router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
+
+    if (to.meta.requiresAuth === false) {
+        store.dispatch("ui/toggleCurrentViewLoading", false).then(() => {
+        })
+        return next()
+    }
+
+
     const authStore = store.state.auth;
 
     let userHasRequiredRole: boolean | unknown = false;
@@ -108,13 +98,12 @@ router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, n
         }
 
     } else {
-        store.dispatch("ui/toggleCurrentViewLoading", false).then(() => {
-        })
-        if (to.name !== "Login") {
-            return next("/Login")
-        } else {
-            return next()
-        }
+        return next("/Login")
+        // if (to.name !== "Login") {
+        //     return next("/Login")
+        // } else {
+        //     return next()
+        // }
     }
 
 })

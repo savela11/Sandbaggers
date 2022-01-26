@@ -1,5 +1,6 @@
 <template>
   <h1>Not Found</h1>
+  <p>Redirecting to Dashboard in {{timer}} seconds.</p>
   <div
     class="background"
     :style="{ backgroundImage: 'url(' + imgUrl + ')' }"
@@ -10,13 +11,11 @@
 
 <script lang="ts">
 import {
-  computed,
-  defineAsyncComponent,
   defineComponent,
   onMounted,
-  reactive,
-  ref,
 } from "vue";
+import router from "@/router";
+
 
 export default defineComponent({
   name: "NotFound",
@@ -26,7 +25,15 @@ export default defineComponent({
     console.log(imgUrl.pathname);
     console.log(import.meta.url);
     const img = "Login-BG.jpg";
-    return { imgUrl, img };
+    let timer = 5
+    onMounted(() => {
+      console.log("redirecting");
+      setTimeout(() => {
+        router.push("/Dashboard")
+      }, timer * 1000);
+    });
+    return { imgUrl, img, timer };
+
   },
 });
 </script>

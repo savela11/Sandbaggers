@@ -29,6 +29,6 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
     // public DbSet<PowerRanking> PowerRankings { get; set; }
     // public DbSet<Draft> Drafts { get; set; }
     // public DbSet<Team> Teams { get; set; }
-    // public DbSet<Bet> Bets { get; set; }
+    public DbSet<Bet> Bets { get; set; }
     // public DbSet<Idea> Ideas { get; set; }
 }

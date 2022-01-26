@@ -8,8 +8,8 @@ import {
   ref,
 } from "vue";
 import AuthService from "@/services/Auth/AuthService";
-import { key, useStore } from "@/store";
-import { LoginUserDto } from "@/types/models/DTO/AuthDto";
+import {key, useStore} from "@/store";
+import {LoginUserDto} from "@/types/models/DTO/AuthDto";
 import axios from "axios";
 // import img from '@/assets/images/Login-BG.jpg'
 
@@ -17,7 +17,7 @@ export default defineComponent({
   name: "Login",
   components: {
     BaseInput: defineAsyncComponent(
-      () => import("@/components/forms/BaseInput.vue")
+        () => import("@/components/forms/BaseInput.vue")
     ),
   },
   setup(props: any) {
@@ -25,7 +25,7 @@ export default defineComponent({
     const currentUser = computed(() => store.state.auth.CurrentUser);
 
     // const bgImage = { backgroundImage: "url(" + img + ")" }
-    const bgImage = { backgroundImage: "url(src/assets/images/Login-BG.jpg)" };
+    const bgImage = {backgroundImage: "url(src/assets/images/Login-BG.jpg)"};
     let loginForm: LoginUserDto = reactive({
       username: "",
       password: "",
@@ -57,7 +57,7 @@ export default defineComponent({
       testData();
     });
 
-    return { loginForm, bgImage, Login, currentUser, message };
+    return {loginForm, bgImage, Login, currentUser, message};
   },
 });
 </script>
@@ -75,18 +75,18 @@ export default defineComponent({
         <form class="form">
           <div class="field">
             <BaseInput
-              v-bind="{ label: 'Username', color: 'primary' }"
-              v-model="loginForm.username"
+                v-bind="{ label: 'Username', color: 'primary' }"
+                v-model="loginForm.username"
             />
           </div>
           <div class="field">
             <BaseInput
-              v-bind="{
+                v-bind="{
                 label: 'Password',
                 color: 'primary',
                 inputType: 'password',
               }"
-              v-model="loginForm.password"
+                v-model="loginForm.password"
             />
           </div>
           <div class="field">
@@ -95,6 +95,13 @@ export default defineComponent({
             </button>
           </div>
         </form>
+      </div>
+
+      <div class="container container--register">
+        <p>Dont have an account?
+          <router-link to="/Register">Register here</router-link>
+          .
+        </p>
       </div>
     </div>
   </div>
@@ -124,10 +131,8 @@ export default defineComponent({
   .section {
     flex: auto;
     min-height: 50%;
-
     // &--top {
     // }
-
     &--bottom {
       background-color: white;
       border-radius: 2px;
