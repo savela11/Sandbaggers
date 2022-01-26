@@ -167,6 +167,7 @@ public class AuthService : IAuthService
             var newSettings = new UserSettings { UserId = newUser.Id, FavoriteLinks = favoriteLinks, Contact = new Contact { IsEmailShowing = true, IsPhoneNumberShowing = true } };;
             newUser.UserProfile = newProfile;
             newUser.UserSettings = newSettings;
+            newUser.CreatedOn =  DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc);
 
             string roleName;
 
