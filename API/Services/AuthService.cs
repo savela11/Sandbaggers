@@ -76,8 +76,11 @@ public class AuthService : IAuthService
                         Name = f.Name,
                         Link = f.Link
                     }).ToList(),
-                    IsContactEmailShowing = foundUser.UserSettings.IsContactEmailShowing,
-                    IsContactNumberShowing = foundUser.UserSettings.IsContactNumberShowing
+                    Contact =
+                    {
+                        IsEmailShowing = foundUser.UserSettings.Contact.IsEmailShowing,
+                        IsPhoneNumberShowing = foundUser.UserSettings.Contact.IsPhoneNumberShowing,
+                    }
                 },
                 Image = string.IsNullOrEmpty(foundUser.UserProfile.Image) ? "" : foundUser.UserProfile.Image
             };
@@ -137,7 +140,6 @@ public class AuthService : IAuthService
                 User = newUser,
                 Handicap = 0,
                 Image = "https://sbassets.blob.core.windows.net/default/defaultProfileImg.svg",
-                CreatedOn = DateTime.Now,
             };
 
 
@@ -162,7 +164,7 @@ public class AuthService : IAuthService
             };
 
 
-            var newSettings = new UserSettings { UserId = newUser.Id, FavoriteLinks = favoriteLinks };
+            var newSettings = new UserSettings { UserId = newUser.Id, FavoriteLinks = favoriteLinks, Contact = new Contact { IsEmailShowing = true, IsPhoneNumberShowing = true } };;
             newUser.UserProfile = newProfile;
             newUser.UserSettings = newSettings;
 

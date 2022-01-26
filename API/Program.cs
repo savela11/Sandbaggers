@@ -4,7 +4,6 @@ using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
 
 const string vueAppPolicy = "_vueAppPolicy";
-const bool enableSwaggerUi = false;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -67,11 +66,9 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    if (enableSwaggerUi)
-    {
+  
         app.UseSwagger();
         app.UseSwaggerUI(c => { c.SwaggerEndpoint("v1/swagger.json", "My API V1"); });
-    }
 }
 
 app.UseHttpsRedirection();
