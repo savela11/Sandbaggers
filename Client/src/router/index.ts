@@ -81,7 +81,7 @@ router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, n
 
     if (typeof requiredRole === "string") {
 
-        userHasRequiredRole = currentUser?.roles.some((role) => role === requiredRole || role === 'Admin');
+        userHasRequiredRole = currentUser?.roles.some((role) => role === requiredRole || role === 'Admin' || role === "TestUser");
         console.log(`Does User have required ${requiredRole} Role: ${userHasRequiredRole}`)
     }
 
