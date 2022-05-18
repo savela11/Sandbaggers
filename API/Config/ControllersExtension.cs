@@ -6,7 +6,7 @@ public static class ControllersExtension
     public static void AddControllers(this WebApplication app)
     {
 
-        app.UseRouting();
+        // app.UseRouting();
         
         app.UseEndpoints(endpoints =>
         {
